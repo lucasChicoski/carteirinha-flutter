@@ -1,6 +1,6 @@
 import 'package:carteirinhaapp/View/Components/custom_app_bar.dart';
 import 'package:flutter/material.dart';
-import '../Components/icon_button_.dart';
+import '../Elements/icon_button_.dart';
 import '../Config/config_colors.dart';
 import '../Store/navigation_pages.dart';
 
@@ -18,7 +18,11 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const Text('Bem vindo de novo Lucas'),
+             Text(
+              'Bem vindo de novo Lucas',
+              style: TextStyle(
+                  color: appBarRed, fontWeight: FontWeight.bold, fontSize: 20),
+            ),
             const SizedBox(
               height: 40,
             ),
