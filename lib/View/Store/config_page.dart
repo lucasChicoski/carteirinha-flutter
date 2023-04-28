@@ -58,6 +58,7 @@ class ConfigPageStore extends ChangeNotifier {
 
   getPicture() async {
     image = await picker.pickImage(source: ImageSource.gallery);
+    studentDto.image = image!.path;
     notifyListeners();
   }
 
@@ -72,22 +73,15 @@ class ConfigPageStore extends ChangeNotifier {
 
   getInformations() async {
     StudentDto studentInf = await studentService.getCacheService();
-
-    studentDto.name = studentInf.name;
-    studentDto.registration = studentInf.registration;
-    studentDto.course = studentInf.course;
-    studentDto.birthDay = studentInf.birthDay;
-    studentDto.validity = studentInf.validity;
-    studentDto.id = studentInf.id;
-    studentDto.cpf = studentInf.cpf;
-    studentDto.image = studentInf.image;
-    
-    print(studentDto.image);
+    studentDto = studentInf;
+    notifyListeners();
   }
 
-  setInformations(StudentDto value, String image) async {
+  setInformations(StudentDto value, String image, BuildContext context) async {
     print(validateForm);
     await studentService.saveCacheService(value, image);
+
+    Navigator.pop(context);
     // if (validateForm) {
     // }
   }

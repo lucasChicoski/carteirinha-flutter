@@ -68,16 +68,8 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                   height: 140,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    // image: DecorationImage(
-                    //   fit: BoxFit.cover,
-                    //   image: configPageStore.image != null
-                    //       ? FileImage(File(configPageStore.image!.path))
-                    //       : FileImage(File('lib/Assets/Logos/mutlivix-normal.svg')),
-                    //   // image: FileImage( configPageStore.image!.path != null ? File(configPageStore.image!.path) : File(configPageStore.image!.path)),
-                    // ),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  // child: Image.asset(fulano),
                   child: configPageStore.image != null
                       ? ClipRRect(
                           borderRadius: BorderRadius.circular(10),
@@ -90,6 +82,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
               Container(
                 margin: const EdgeInsets.all(15),
                 child: TextFieldCustom(
+                  hint: '##### (São 5 números)',
                   label: 'Matrícula',
                   onChange: configPageStore.setRegistration,
                 ),
@@ -98,6 +91,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 margin: const EdgeInsets.all(15),
                 child: TextFieldCustom(
                   label: 'Nome',
+                  hint: 'Nome Completo',
                   onChange: configPageStore.setName,
                 ),
               ),
@@ -105,6 +99,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 margin: const EdgeInsets.all(15),
                 child: TextFieldCustom(
                   label: 'Curso',
+                  hint: 'Nome do Curso',
                   onChange: configPageStore.setCourse,
                 ),
               ),
@@ -112,6 +107,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 margin: const EdgeInsets.all(15),
                 child: TextFieldCustom(
                   label: 'Data de Nascimento',
+                  hint: 'xx/xx/xxxx',
                   onChange: configPageStore.setBirthDay,
                 ),
               ),
@@ -119,6 +115,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 margin: const EdgeInsets.all(15),
                 child: TextFieldCustom(
                   label: 'Data de Validade',
+                  hint: 'xx/xx/xxxx',
                   onChange: configPageStore.setValidity,
                 ),
               ),
@@ -126,6 +123,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 margin: const EdgeInsets.all(15),
                 child: TextFieldCustom(
                   label: 'Identidade',
+                  hint: 'x.xxx.xxx SPTC ES',
                   onChange: configPageStore.setId,
                 ),
               ),
@@ -133,6 +131,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                 margin: const EdgeInsets.all(15),
                 child: TextFieldCustom(
                   label: 'CPF',
+                  hint: 'xxx.xxx.xxx-xx',
                   onChange: configPageStore.setCpf,
                 ),
               ),
@@ -143,7 +142,8 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                       configPageStore.studentDto,
                       configPageStore.image != null
                           ? configPageStore.image!.path
-                          : '');
+                          : '',
+                      context);
                 },
               ),
             ],

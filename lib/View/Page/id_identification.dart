@@ -11,8 +11,21 @@ import '../Store/config_page.dart';
 
 ConfigPageStore _configPageStore = GetIt.I<ConfigPageStore>();
 
-class IDIdentification extends StatelessWidget {
+class IDIdentification extends StatefulWidget {
   const IDIdentification({super.key});
+
+  @override
+  State<IDIdentification> createState() => _IDIdentificationState();
+}
+
+class _IDIdentificationState extends State<IDIdentification> {
+  @override
+  void initState() {
+    _configPageStore.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +48,18 @@ class IDIdentification extends StatelessWidget {
                     flex: 1,
                     child: Container(
                       margin: const EdgeInsets.all(10),
-                      color: Colors.blue,
+                      // color: Colors.blue,
                       height: 110,
-                      child: _configPageStore.studentDto.image != null
+                      child: _configPageStore.studentDto.image.isNotEmpty
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.file(
-                                  File(_configPageStore.studentDto.image!),
+                                  File(_configPageStore.studentDto.image),
                                   fit: BoxFit.cover),
                             )
                           : Image.asset(fulano),
+
+                      //Image.asset(fulano)
                     ),
                   ),
                   Expanded(

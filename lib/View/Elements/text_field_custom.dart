@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class TextFieldCustom extends StatelessWidget {
   final String label;
+  final String? hint;
   final Function(String)? onChange;
-  const TextFieldCustom( 
-      {super.key, required this.label,  this.onChange});
+  const TextFieldCustom(
+      {super.key, required this.label, this.onChange, this.hint});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +15,7 @@ class TextFieldCustom extends StatelessWidget {
       child: TextField(
         onChanged: onChange,
         decoration: InputDecoration(
+          hintText: hint ?? '',
           label: Text(
             label,
           ),

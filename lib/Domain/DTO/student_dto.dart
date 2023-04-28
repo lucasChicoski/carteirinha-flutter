@@ -6,5 +6,5 @@ class StudentDto {
   String validity = 'xx/xx/xxxx';
   String id = 'x.xxx.xxx SPTC ES';
   String cpf = 'xxx.xxx.xxx-xx';
-  String? image = '';
+  String image = '';
 }
