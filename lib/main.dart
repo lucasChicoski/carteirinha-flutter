@@ -2,7 +2,7 @@ import 'package:carteirinhaapp/setup_getit.dart';
 import 'package:flutter/material.dart';
 import 'Routers/routers.dart';
 
-void main(List<String> args) {
+void main(List<String> args) async {
   setUpGetIt();
   runApp(const MainApp());
 }

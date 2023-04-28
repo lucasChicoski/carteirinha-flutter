@@ -1,9 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../Assets/Logos/import_asset.dart';
 import '../Components/custom_app_bar.dart';
 import '../Config/config_colors.dart';
+import '../Store/config_page.dart';
+
+ConfigPageStore _configPageStore = GetIt.I<ConfigPageStore>();
 
 class IDIdentification extends StatelessWidget {
   const IDIdentification({super.key});
@@ -27,11 +33,43 @@ class IDIdentification extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: Container(
+                    child:
+                        //  Container(
+
+                        //   height: 110,
+                        //   decoration: BoxDecoration(
+                        //     color: Colors.white,
+                        //     // image: DecorationImage(
+                        //     //   fit: BoxFit.cover,
+                        //     //   image: configPageStore.image != null
+                        //     //       ? FileImage(File(configPageStore.image!.path))
+                        //     //       : FileImage(File('lib/Assets/Logos/mutlivix-normal.svg')),
+                        //     //   // image: FileImage( configPageStore.image!.path != null ? File(configPageStore.image!.path) : File(configPageStore.image!.path)),
+                        //     // ),
+                        //     borderRadius: BorderRadius.circular(10),
+                        //   ),
+                        //   // child: Image.asset(fulano),
+                        //   child: _configPageStore.image != null
+                        //       ? ClipRRect(
+                        //           borderRadius: BorderRadius.circular(10),
+                        //           child: Image.file(
+                        //               File(_configPageStore.studentDto.image),
+                        //               fit: BoxFit.cover),
+                        //         )
+                        //       : Image.asset(fulano),
+                        // ),
+                        Container(
                       margin: const EdgeInsets.all(10),
-                      color: Colors.blue,
+                      // color: Colors.blue,
                       height: 110,
-                      child: Container(),
+                      child: _configPageStore.image != null
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(
+                                  File(_configPageStore.studentDto.image),
+                                  fit: BoxFit.cover),
+                            )
+                          : Image.asset(fulano),
                     ),
                   ),
                   Expanded(
@@ -59,21 +97,21 @@ class IDIdentification extends StatelessWidget {
                                 color: cardMatricula,
                                 borderRadius: BorderRadius.circular(5)),
                             width: fullWidth,
-                            child: const Column(
+                            child: Column(
                               children: [
-                                Text(
+                                const Text(
                                   'Matrícula',
                                   style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w400,
                                       color: Colors.white),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  '1516813',
-                                  style: TextStyle(
+                                  _configPageStore.studentDto.registration,
+                                  style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
@@ -91,7 +129,7 @@ class IDIdentification extends StatelessWidget {
                 height: 50,
               ),
               Text(
-                'Lucas Chicoski dos Santos',
+                _configPageStore.studentDto.name,
                 style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -127,7 +165,7 @@ class IDIdentification extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      'ENGENHARIA DA COMPUTAÇÃO',
+                      _configPageStore.studentDto.course,
                       style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.bold,
@@ -157,7 +195,7 @@ class IDIdentification extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            '23/11/1996',
+                            _configPageStore.studentDto.birthDay,
                             style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
@@ -201,7 +239,7 @@ class IDIdentification extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            '23/11/2025',
+                            _configPageStore.studentDto.validity,
                             style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
@@ -232,7 +270,7 @@ class IDIdentification extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            '2.281.541 SPTC ES',
+                            _configPageStore.studentDto.id,
                             style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
@@ -257,7 +295,7 @@ class IDIdentification extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            '127.312.277-10',
+                            _configPageStore.studentDto.cpf,
                             style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,

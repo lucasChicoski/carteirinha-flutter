@@ -139,8 +139,11 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
               ElevatedButtonCustom(
                 label: 'Registrar',
                 onPress: () {
-                  configPageStore
-                      .setInformations(configPageStore.montInformation());
+                  configPageStore.setInformations(
+                      configPageStore.studentDto,
+                      configPageStore.image != null
+                          ? configPageStore.image!.path
+                          : '');
                 },
               ),
             ],

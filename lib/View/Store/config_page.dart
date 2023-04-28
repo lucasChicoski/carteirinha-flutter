@@ -1,63 +1,59 @@
+import 'package:carteirinhaapp/Domain/DTO/student_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../Infra/Cache/save_cache.dart';
+import '../../Service/student_service.dart';
+
+SaveCache saveCache = SaveCache();
+StudentService studentService = StudentService(saveCache);
 
 class ConfigPageStore extends ChangeNotifier {
   final ImagePicker picker = ImagePicker();
 
-  String registration = '';
-  String name = '';
-  String course = '';
-  String birthDay = '';
-  String validity = '';
-  String id = '';
-  String cpf = '';
+  StudentDto studentDto = StudentDto();
   XFile? image;
 
   setRegistration(String value) {
-    registration = value;
+    studentDto.registration = value;
+
     notifyListeners();
   }
 
   setName(String value) {
-    name = value;
+    studentDto.name = value;
+
     notifyListeners();
   }
 
   setCourse(String value) {
-    course = value;
+    studentDto.course = value;
+
     notifyListeners();
   }
 
   setBirthDay(String value) {
-    birthDay = value;
+    studentDto.birthDay = value;
+
     notifyListeners();
   }
 
   setValidity(String value) {
-    validity = value;
+    studentDto.validity = value;
+
     notifyListeners();
   }
 
   setId(String value) {
-    id = value;
+    studentDto.id = value;
+
     notifyListeners();
   }
 
   setCpf(String value) {
-    cpf = value;
-    notifyListeners();
-  }
+    studentDto.cpf = value;
 
-  Map<String, String> montInformation() {
-    Map<String, String> inf = {};
-    inf['name'] = name;
-    inf['registration'] = registration;
-    inf['course'] = course;
-    inf['birthDay'] = birthDay;
-    inf['validity'] = validity;
-    inf['id'] = id;
-    inf['cpf'] = cpf;
-    return inf;
+    notifyListeners();
   }
 
   getPicture() async {
@@ -66,18 +62,32 @@ class ConfigPageStore extends ChangeNotifier {
   }
 
   bool get validateForm =>
-      name.isNotEmpty &&
-      registration.isNotEmpty &&
-      course.isNotEmpty &&
-      birthDay.isNotEmpty &&
-      validity.isNotEmpty &&
-      id.isNotEmpty &&
-      cpf.isNotEmpty;
+      studentDto.name.isNotEmpty &&
+      studentDto.registration.isNotEmpty &&
+      studentDto.course.isNotEmpty &&
+      studentDto.birthDay.isNotEmpty &&
+      studentDto.validity.isNotEmpty &&
+      studentDto.id.isNotEmpty &&
+      studentDto.cpf.isNotEmpty;
 
-  setInformations(Map<String, String> value) {
+  getInformations() async {
+    StudentDto studentInf = await studentService.getCacheService();
+
+    studentDto.name = studentInf.name;
+    studentDto.registration = studentInf.registration;
+    studentDto.course = studentInf.course;
+    studentDto.birthDay = studentInf.birthDay;
+    studentDto.validity = studentInf.validity;
+    studentDto.id = studentInf.id;
+    studentDto.cpf = studentInf.cpf;
+    studentDto.image = studentInf.image;
+    print(studentDto.image);
+  }
+
+  setInformations(StudentDto value, String image) async {
     print(validateForm);
-    if (validateForm) {
-      print(value);
-    }
+    await studentService.saveCacheService(value, image);
+    // if (validateForm) {
+    // }
   }
 }
