@@ -81,6 +81,7 @@ class ConfigPageStore extends ChangeNotifier {
     studentDto.id = studentInf.id;
     studentDto.cpf = studentInf.cpf;
     studentDto.image = studentInf.image;
+    
     print(studentDto.image);
   }
 

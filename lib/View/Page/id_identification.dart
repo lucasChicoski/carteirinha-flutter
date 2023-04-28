@@ -33,40 +33,15 @@ class IDIdentification extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child:
-                        //  Container(
-
-                        //   height: 110,
-                        //   decoration: BoxDecoration(
-                        //     color: Colors.white,
-                        //     // image: DecorationImage(
-                        //     //   fit: BoxFit.cover,
-                        //     //   image: configPageStore.image != null
-                        //     //       ? FileImage(File(configPageStore.image!.path))
-                        //     //       : FileImage(File('lib/Assets/Logos/mutlivix-normal.svg')),
-                        //     //   // image: FileImage( configPageStore.image!.path != null ? File(configPageStore.image!.path) : File(configPageStore.image!.path)),
-                        //     // ),
-                        //     borderRadius: BorderRadius.circular(10),
-                        //   ),
-                        //   // child: Image.asset(fulano),
-                        //   child: _configPageStore.image != null
-                        //       ? ClipRRect(
-                        //           borderRadius: BorderRadius.circular(10),
-                        //           child: Image.file(
-                        //               File(_configPageStore.studentDto.image),
-                        //               fit: BoxFit.cover),
-                        //         )
-                        //       : Image.asset(fulano),
-                        // ),
-                        Container(
+                    child: Container(
                       margin: const EdgeInsets.all(10),
-                      // color: Colors.blue,
+                      color: Colors.blue,
                       height: 110,
-                      child: _configPageStore.image != null
+                      child: _configPageStore.studentDto.image != null
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(10),
                               child: Image.file(
-                                  File(_configPageStore.studentDto.image),
+                                  File(_configPageStore.studentDto.image!),
                                   fit: BoxFit.cover),
                             )
                           : Image.asset(fulano),
